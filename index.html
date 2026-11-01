@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d1626" />
+    <!-- SEO tags below are rewritten per page at build time by scripts/postbuild.mjs -->
+    <title>Calibre Data Co | Measurement-led growth for e-commerce and lead-gen brands</title>
+    <meta name="description" content="Calibre Data Co fixes your tracking, connects your ads to real revenue, and tells you exactly where your next budget should go." />
+    <link rel="canonical" href="https://www.example.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Calibre Data Co" />
+    <meta property="og:title" content="Calibre Data Co | Measurement-led growth for e-commerce and lead-gen brands" />
+    <meta property="og:description" content="Calibre Data Co fixes your tracking, connects your ads to real revenue, and tells you exactly where your next budget should go." />
+    <meta property="og:url" content="https://www.example.com/" />
+    <meta property="og:image" content="/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Consent Mode v2 defaults: everything denied until the visitor chooses. Must run before GTM. -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+        wait_for_update: 500
+      });
+      gtag('set', 'ads_data_redaction', true);
+      gtag('set', 'url_passthrough', true);
+      try {
+        var c = JSON.parse(localStorage.getItem('cdc_consent_v1') || 'null');
+        if (c) gtag('consent', 'update', {
+          analytics_storage: c.analytics ? 'granted' : 'denied',
+          ad_storage: c.marketing ? 'granted' : 'denied',
+          ad_user_data: c.marketing ? 'granted' : 'denied',
+          ad_personalization: c.marketing ? 'granted' : 'denied'
+        });
+      } catch (e) {}
+    </script>
+    <!-- Google Tag Manager: loads only when VITE_GTM_ID is set -->
+    <script>
+      (function(w,d,s,l,i){ if(!i || i.charAt(0)==='%') return;
+      w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','%VITE_GTM_ID%');
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!--
+      Netlify Forms detection: Netlify reads this hidden form at deploy time so it
+      knows the "mini-audit" form and its fields. The visible React form posts to it.
+      If you add a field to the React form, add it here too.
+    -->
+    <form name="mini-audit" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input name="bot-field" />
+      <input name="name" /><input name="email" /><input name="website" />
+      <input name="business_type" /><input name="ad_spend" /><textarea name="question"></textarea>
+      <input name="utm_source" /><input name="utm_medium" /><input name="utm_campaign" />
+      <input name="utm_content" /><input name="utm_term" />
+      <input name="first_utm_source" /><input name="first_utm_medium" /><input name="first_utm_campaign" />
+      <input name="landing_page" /><input name="referrer" /><input name="click_id" />
+      <input name="page_path" /><input name="submission_id" />
+    </form>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

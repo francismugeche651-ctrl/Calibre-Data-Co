@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   BRAND TOKENS: change colours and fonts here and the whole site updates.
+   ========================================================================== */
+@theme {
+  /* Fonts (self-hosted via @fontsource, imported in main.jsx) */
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Ink: primary dark (text, dark sections) */
+  --color-ink-950: #070d17;
+  --color-ink-900: #0d1626;
+  --color-ink-800: #172236;
+  --color-ink-700: #26334a;
+  --color-ink-600: #3b4860;
+  --color-ink-500: #5a667c;
+  --color-ink-400: #8590a3;
+  --color-ink-300: #b4bcc9;
+  --color-ink-200: #d9dee6;
+  --color-ink-100: #eceff3;
+
+  /* Paper: light backgrounds */
+  --color-paper: #f7f6f2;
+  --color-paper-2: #efede6;
+  --color-line: #dedbd2;
+
+  /* Signal: the single accent (calibration green) */
+  --color-signal-700: #0a5c4b;
+  --color-signal-600: #0b6e5a;
+  --color-signal-500: #0f8a70;
+  --color-signal-400: #3fb393;
+  --color-signal-200: #bfe6d9;
+  --color-signal-100: #e3f4ee;
+
+  /* Muted warning tone used ONLY for "platform-reported / unreliable" data */
+  --color-caution-500: #b7791f;
+  --color-caution-100: #f7ecd9;
+
+  --animate-rise: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
+  body {
+    @apply bg-paper text-ink-900 font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { @apply bg-signal-200 text-ink-900; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-signal-500; }
+  h1, h2, h3, h4 { @apply tracking-tight text-balance; }
+  p { @apply text-pretty; }
+}
+
+@layer components {
+  /* Caliper-style tick ruler used as a section divider */
+  .ruler {
+    height: 10px;
+    background-image:
+      linear-gradient(to right, currentColor 1px, transparent 1px),
+      linear-gradient(to right, currentColor 1px, transparent 1px);
+    background-size: 40px 10px, 8px 4px;
+    background-repeat: repeat-x;
+    background-position: 0 0, 0 0;
+    opacity: 0.35;
+  }
+  /* Faint measurement grid for dark hero backgrounds */
+  .grid-faint {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .grid-faint-light {
+    background-image:
+      linear-gradient(to right, rgb(13 22 38 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(13 22 38 / 0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .prose-calibre { @apply text-ink-700 leading-relaxed; }
+  .prose-calibre h2 { @apply mt-10 mb-3 text-2xl font-semibold text-ink-900; }
+  .prose-calibre h3 { @apply mt-8 mb-2 text-lg font-semibold text-ink-900; }
+  .prose-calibre p { @apply mb-4; }
+  .prose-calibre ul { @apply mb-4 list-disc pl-5 space-y-1.5; }
+  .prose-calibre ol { @apply mb-4 list-decimal pl-5 space-y-1.5; }
+  .prose-calibre strong { @apply font-semibold text-ink-900; }
+  .prose-calibre a { @apply text-signal-600 underline underline-offset-2; }
+}
+
+/* Reveal-on-scroll (see components/ui/Reveal.jsx). Respects reduced motion. */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
